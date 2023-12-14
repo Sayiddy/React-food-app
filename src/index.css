@@ -107,6 +107,7 @@ h1 {
   margin-bottom: 1.5rem;
 }
 
+/* title of cart */ 
 .cart h2 {
   margin: 1rem 0;
 }
@@ -123,6 +124,7 @@ h1 {
   gap: 1rem;
 }
 
+/* close button */
 .modal-actions .text-button {
   color: #1d1a16;
 }
@@ -152,12 +154,14 @@ h1 {
   margin: 0;
 }
 
+/* incease decrease div wrap*/
 .cart-item-actions {
   display: flex;
   gap: 1rem;
   align-items: center;
 }
 
+/* increase and decrease quantity*/
 .cart-item-actions button {
   cursor: pointer;
   font-size: 1rem;
