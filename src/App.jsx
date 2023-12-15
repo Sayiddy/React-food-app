@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import Product from "./component/product";
 import useFetch from "./component/useFetch";
 import Cart from "./component/Cart";
+import Modal from "./component/Modal";
 
 function App() {
     const [cartOpen, setCartOpen] = useState(false)
@@ -18,11 +19,16 @@ function App() {
         setCartOpen(true)
     }
 
+    function onCartClose() {
+        setCartOpen(false)
+    }
+
     return (
         <div>
-            {cartOpen && 
+            <Modal open={cartOpen} onClose={onCartClose}>
                 <Cart cartItems={cartItems}></Cart>
-            }
+            </Modal>
+
             <header id="main-header">
                 <h1 id="title">
                     <img src="./assets"></img>
