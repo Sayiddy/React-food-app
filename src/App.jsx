@@ -13,7 +13,25 @@ function App() {
     console.log(data)
 
     function onAddCart(name, price, quantity) {
-        setCartItems((cartItems)=>[...cartItems, {name: name, price: price, quantity: quantity}])
+        let alreadyAdded = false;
+        for (let i = 0; i < cartItems.length; i++) {
+            const element = cartItems[i];
+            if (element.name == name){
+                alreadyAdded = true
+            }
+        }
+        if (alreadyAdded) {
+            const nextCartItems = cartItems.map((c) => {
+                if (c.name == name) {
+                    return {name: c.name, price: c.price, quantity: c.quantity + 1};
+                } else {
+                    return c;
+                }
+            });
+            setCartItems(nextCartItems)
+        }else{
+            setCartItems((cartItems)=>[...cartItems, {name: name, price: price, quantity: quantity}])
+        }
     }
 
     function onCart() {
@@ -27,7 +45,7 @@ function App() {
     return (
         <div>
             <Modal open={cartOpen} onClose={onCartClose}>
-                <Cart cartItems={cartItems} onClose={onCartClose}/>
+                <Cart cartItems={cartItems} onClose={onCartClose} setCartItems={setCartItems} key={cartItems}/>
             </Modal>
 
             <header id="main-header">
