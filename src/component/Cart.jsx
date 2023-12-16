@@ -1,6 +1,17 @@
 export default function Cart({ cartItems, onClose }) {
     let items = cartItems;
 
+    if (cartItems.length == 0){
+        return (
+            <div className="cart">
+                <h2>
+                    You havent selected anything.
+                </h2>
+                <button className="button" onClick={onClose}>Go Back</button>
+            </div>
+        )
+    }
+
     return(
         <div className="cart">
             <h2>Your Cart</h2>
