@@ -3,6 +3,7 @@ import Product from "./component/product";
 import useFetch from "./component/useFetch";
 import Cart from "./component/Cart";
 import Modal from "./component/Modal";
+import Meals from "./component/Meals";
 
 function App() {
     const [cartOpen, setCartOpen] = useState(false)
@@ -26,7 +27,7 @@ function App() {
     return (
         <div>
             <Modal open={cartOpen} onClose={onCartClose}>
-                <Cart cartItems={cartItems}></Cart>
+                <Cart cartItems={cartItems} onClose={onCartClose}/>
             </Modal>
 
             <header id="main-header">
@@ -37,15 +38,7 @@ function App() {
                 <button className="text-button" onClick={onCart}>cart({cartItems.length})</button>
             </header>
 
-            <div id="meals">
-                {data ? data.map((meal)=>{
-                    return <Product key={meal.id} imgUrl={meal.image} foodTitle={meal.name} price={meal.price} desc={meal.description} onCart={onAddCart}></Product>
-                })
-                :
-                    <div className="text-button">Loading Meals</div>
-                }
-            </div>
-        
+            <Meals data={data} onAddCart={onAddCart}/>
         </div>
     );
 }
