@@ -37,7 +37,7 @@ function App() {
         setCartOpen(true)
     }
 
-    function onCartClose(submit = false) {
+    function onCartClose(event, submit = false) {
         setCartOpen(false)
         if(submit){
             setCheckoutOpen(true)

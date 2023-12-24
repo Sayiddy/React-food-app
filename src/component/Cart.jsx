@@ -6,7 +6,7 @@ export default function Cart({ cartItems, onClose, setCartItems, totalPrice}) {
                 <h2>
                     You havent selected anything.
                 </h2>
-                <button className="button" onClick={onClose}>Go Back</button>
+                <button className="button" onClick={()=>{onClose("", false)}}>Go Back</button>
             </div>
         )
     }
@@ -55,8 +55,8 @@ export default function Cart({ cartItems, onClose, setCartItems, totalPrice}) {
             <p className="cart-total">${calcPrice()}</p>
 
             <div className="modal-actions">
-                <button className="text-button" onClick={onClose}>Cancel</button>
-                <button className="button" onClick={()=>{onClose(true)}}>Go To Checkout</button>
+                <button className="text-button" onClick={()=>{onClose("", false)}}>Cancel</button>
+                <button className="button" onClick={()=>{onClose("", true)}}>Go To Checkout</button>
             </div>
         </div>
     )

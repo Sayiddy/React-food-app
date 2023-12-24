@@ -23,6 +23,7 @@ app.get('/meals', async (req, res) => {
 app.post('/orders', async (req, res) => {
   const orderData = req.body.order;
 
+    console.log(req.body)
   if (orderData === null || orderData.items === null || orderData.items == []) {
     return res
       .status(400)
