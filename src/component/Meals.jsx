@@ -1,6 +1,10 @@
 import Product from "./product"
+import useFetch from "./useFetch"
 
-export default function Meals({ data, onAddCart}) {
+export default function Meals({ onAddCart}) {
+    const data = useFetch("http://localhost:3000/meals", "GET", "")
+    console.log(data)
+
     return(
         <div id="meals">
             {data ? data.map((meal)=>{

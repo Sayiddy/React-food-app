@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
 
-export default function useFetch(url) {
-    const [data, setdata] = useState()
+export default function useFetch(url, method = "GET", body) {
+    const [res, setRes] = useState()
 
     useEffect(()=>{
-        fetch(url, {method: "GET"})
-        .then(res => res.json())
-        .then(json => setdata(json))
-    }, [url])
+        if(method == "GET"){
+            fetch(url, {method: "GET"})
+            .then(res => res.json())
+            .then(json => setRes(json))
+        }else if(method == "POST"){
+            fetch(url, {method: method, body: body})
+            .finally(res=>res)
+        }
+    }, [url, method])
 
-    return data;
+    return res;
 };

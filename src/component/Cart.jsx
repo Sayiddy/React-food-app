@@ -1,4 +1,4 @@
-export default function Cart({ cartItems, onClose, setCartItems}) {
+export default function Cart({ cartItems, onClose, setCartItems, totalPrice}) {
 
     if (cartItems.length == 0){
         return (
@@ -29,6 +29,7 @@ export default function Cart({ cartItems, onClose, setCartItems}) {
             console.log(mealPrice)
             price += mealPrice
         }
+        totalPrice.current = price;
         return price;
     }
 
@@ -55,7 +56,7 @@ export default function Cart({ cartItems, onClose, setCartItems}) {
 
             <div className="modal-actions">
                 <button className="text-button" onClick={onClose}>Cancel</button>
-                <button className="button">Submit</button>
+                <button className="button" onClick={()=>{onClose(true)}}>Go To Checkout</button>
             </div>
         </div>
     )

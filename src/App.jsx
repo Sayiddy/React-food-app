@@ -1,16 +1,15 @@
-import { useRef, useState } from "react";
-import Product from "./component/product";
+import {useRef, useState } from "react";
 import useFetch from "./component/useFetch";
 import Cart from "./component/Cart";
 import Modal from "./component/Modal";
 import Meals from "./component/Meals";
+import Checkout from "./component/Checkout";
 
 function App() {
     const [cartOpen, setCartOpen] = useState(false)
+    const [checkoutOpen, setCheckoutOpen] = useState(false)
     const [cartItems, setCartItems] = useState([])
-
-    const data = useFetch("http://localhost:3000/meals")
-    console.log(data)
+    const price = useRef()
 
     function onAddCart(name, price, quantity) {
         let alreadyAdded = false;
@@ -38,14 +37,25 @@ function App() {
         setCartOpen(true)
     }
 
-    function onCartClose() {
+    function onCartClose(submit = false) {
         setCartOpen(false)
+        if(submit){
+            setCheckoutOpen(true)
+        }
+    }
+
+    function onCheckoutClose() {
+        setCheckoutOpen(false)
     }
 
     return (
         <div>
             <Modal open={cartOpen} onClose={onCartClose}>
-                <Cart cartItems={cartItems} onClose={onCartClose} setCartItems={setCartItems} key={cartItems}/>
+                <Cart cartItems={cartItems} onClose={onCartClose} setCartItems={setCartItems} key={cartItems} totalPrice={price}/>
+            </Modal>
+
+            <Modal open={checkoutOpen} onClose={onCheckoutClose}>
+                <Checkout onClose={onCheckoutClose} price={price} items={cartItems}></Checkout>
             </Modal>
 
             <header id="main-header">
@@ -56,7 +66,7 @@ function App() {
                 <button className="text-button" onClick={onCart}>cart({cartItems.length})</button>
             </header>
 
-            <Meals data={data} onAddCart={onAddCart}/>
+            <Meals onAddCart={onAddCart}/>
         </div>
     );
 }
