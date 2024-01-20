@@ -1,4 +1,4 @@
-import Product from "./product"
+import Product from "./Product"
 import useFetch from "./useFetch"
 
 export default function Meals({ onAddCart}) {
