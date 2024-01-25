@@ -62,7 +62,7 @@ function App() {
 
             <header id="main-header">
                 <h1 id="title">
-                    <img src="http://localhost:5173/src/assets/logo.jpg"></img>
+                    <img src=""></img>
                     REACT FOOD
                 </h1>
                 <button className="text-button" onClick={onCart}>cart({cartItems.length})</button>
